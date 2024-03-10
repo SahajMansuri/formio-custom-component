@@ -1,0 +1,21 @@
+<div class="container ">
+    <div class="text-left">
+        <h1>Form Builder</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <input type="text" class="form-control" placeholder="enter form title" aria-label="title"
+                    aria-describedby="basic-addon2" name="Title" [(ngModel)]="form.title" />
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <div class="input-group mb-3 mt-3">
+                    <button type="button" class="btn btn-primary" (click)="onSaveForm()"> Save </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="col-md-12">
+        <form-builder [form]="form" [options]="builderOption" #FormBilder></form-builder>
+    </div>
+</div>
