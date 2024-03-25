@@ -38,22 +38,16 @@ export class FormRendererComponent {
         {
           sanitize: true,
           sanitizeConfig: {
-            allowedTags: ['sync-grid', 'emp-tab'],
-            addTags: ['sync-grid', 'emp-tab']
+            allowedTags: ['sync-grid', 'my-rating', ''],
+            addTags: ['sync-grid', 'my-rating', '']
           }
         }
-      ).then((form) => {
+      ).then((form: any) => {
         form.on('submit', (submission: any) => {
           console.log(submission);
           this.FormSubmitJson = JSON.stringify(submission.data, null, 4);
         });
       })
     }
-
-    // onSubmit(submission: any) {
-    //   // Handle the form submission data
-    //   console.log('Form submitted with data:', submission.data);
-    //   this.FormSubmitJson = JSON.stringify(submission.data, null, 4);
-    // }
   }
 }

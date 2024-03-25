@@ -1,31 +1,27 @@
 <div class="container">
-    <div class="text-left">
-        <h1>Form Renderer</h1>
-        <hr>
+  <div class="text-left">
+    <h1>Form Renderer</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="" class="form-label">Select Form:</label>
+        <select class="form-control form-select-lg mb-3" name="FormTitle" (change)="renderTemplate($event)">
+          <option value="-1" selected>select template</option>
+          <option *ngFor="let form of formTemplates; let i = index" [value]="i">
+            {{ form.title }}
+          </option>
+        </select>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-            <label for="" class="form-label">Select Form:</label>
-            <select
-            class="form-control form-select-lg mb-3"
-            name="FormTitle"
-            (change)="renderTemplate($event)"
-          >
-            <option value="-1" selected>select template</option>
-            <option *ngFor="let form of formTemplates; let i = index" [value]="i">
-              {{ form.title }}
-            </option>
-          </select>
-            </div>    
-        </div>
-        <div class="col-md-8">
-            <div id="formio"></div>
-        </div>
+    <div class="col-md-8">
+      <div id="formio"></div>
     </div>
-<hr>
-    <div class="row">
-        <!-- <div class="col-md-6 p-3">
+  </div>
+  <hr>
+
+  <!-- <div class="col-md-6 p-3">
             <div class="text-center">
                 <h4>Form Components Json</h4>  
             </div>
@@ -33,117 +29,33 @@
                <pre> {{selectedJsonRef }}</pre>
               </div>
         </div> -->
-        <div class="col jsonScreen">
-            <ng-container
-              *ngIf="isTemplateSelected; then selectedJsonRef; else emptyJsonRef"
-            ></ng-container>
-      
-            <ng-template #emptyJsonRef>
-              <div>JSON not available!</div>
-            </ng-template>
-      
-            <ng-template #selectedJsonRef>
-              <div>
-                <div class="text-center">
-                  <h4>{{ isDataSubmited ? "Data JSON" : "Template JSON" }}</h4>
-                </div>
-                <div class="input-group mb-3 mt-3">
-                  <pre>
-                                  {{
-                      (isDataSubmited ? submitedTemplate : selectedTemplate) | json
-                    }}
-                              </pre
-                  >
-                </div>
-              </div>
-            </ng-template>
+  <div class="col jsonScreen">
+    <ng-container *ngIf="isTemplateSelected; then selectedJsonRef; else emptyJsonRef"></ng-container>
+
+    <ng-template #emptyJsonRef>
+      <div>JSON not available!</div>
+    </ng-template>
+
+    <ng-template #selectedJsonRef>
+      <div class="row">
+        <div class="col-md-6 p-3">
+          <div class="text-center">
+            <h4>Form Components</h4>
           </div>
-    </div>
+          <div class="input-group mb-3 mt-3">
+            <pre> {{selectedTemplate | json }}</pre>
+          </div>
+        </div>
+        <div class="col-md-6 p-3">
+          <div class="text-center">
+            <h4>Submit Data </h4>
+          </div>
+          <div class="input-group mb-3 mt-3">
+            <pre>{{FormSubmitJson}}</pre>
+
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>
-
-
-<!-- <div class="container ">
-  <div class="col-md-12">
-    <div class="text-center">
-      <h1>Form Renderer</h1>
-    </div>
-    <formio [form]="FormTitileControls" ></formio> -->
-
-<!-- <formio [form]='{
-      "title": "My Test Form",
-      "components": [
-          {
-              "type": "textfield",
-              "input": true,
-              "tableView": true,
-              "inputType": "text",
-              "inputMask": "",
-              "label": "First Name",
-              "key": "firstName",
-              "placeholder": "Enter your first name",
-              "prefix": "",
-              "suffix": "",
-              "multiple": false,
-              "defaultValue": "",
-              "protected": false,
-              "unique": false,
-              "persistent": true,
-              "validate": {
-                  "required": true,
-                  "minLength": 2,
-                  "maxLength": 10,
-                  "pattern": "",
-                  "custom": "",
-                  "customPrivate": false
-              }
-          },
-          {
-              "type": "textfield",
-              "input": true,
-              "tableView": true,
-              "inputType": "text",
-              "inputMask": "",
-              "label": "Last Name",
-              "key": "lastName",
-              "placeholder": "Enter your last name",
-              "prefix": "",
-              "suffix": "",
-              "multiple": false,
-              "defaultValue": "",
-              "protected": false,
-              "unique": false,
-              "persistent": true,
-              "validate": {
-                  "required": true,
-                  "minLength": 2,
-                  "maxLength": 10,
-                  "pattern": "",
-                  "custom": "",
-                  "customPrivate": false
-              }
-              
-          },
-          {
-              "input": true,
-              "label": "Submit",
-              "tableView": false,
-              "key": "submit",
-              "size": "md",
-              "leftIcon": "",
-              "rightIcon": "",
-              "block": false,
-              "action": "submit",
-              "disableOnInvalid": true,
-              "theme": "primary",
-              "type": "button"
-          }
-      ]
-  }'></formio>
-  
-  </div>
-  <div class="col-md-6">
-    
-      <a routerLink="/FromBuilder">From Renderer</a>
- 
-  </div>
-</div> -->

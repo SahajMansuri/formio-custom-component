@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { registerRatingComponent } from './CustomComponent/rating-wrapper/rating-wrapper.formio';
+import { registerSyncfusionGridComponent } from './CustomComponent/syncfusion-data-grid/syncfusion-data-grid.formio';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -9,4 +11,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'formio-custom-component';
+  constructor(injector: Injector) {
+    registerRatingComponent(injector);
+    registerSyncfusionGridComponent(injector);
+  }
 }
